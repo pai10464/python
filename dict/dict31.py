@@ -16,14 +16,20 @@ def take(pocket, money_in):
 def pay(pocket, amt):
     d_amt = {}
     for keys, value in pocket.items():
-        if amt // keys > value:
-            return {}
-        if amt // keys != 0:
-            d_amt[keys] = amt // keys
-            amt %= keys
-            pocket[keys] -= d_amt[keys]
+        while amt >= keys and pocket[keys] != 0:
+            if keys not in d_amt:
+                amt -= keys
+                d_amt[keys] = 1
+                pocket[keys] -= 1
+            else:
+                amt -= keys
+                d_amt[keys] += 1
+                pocket[keys] -= 1
+    if amt != 0:
+        for keys, value in d_amt.items():
+            pocket[keys] += value
+        return {}
     return d_amt
 
 
-p={100:3, 10:5, 5:10, 1:7}
-print(pay(p, 407))
+exec(input().strip())
