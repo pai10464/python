@@ -1,4 +1,5 @@
-data = {}
+from collections import OrderedDict
+data = OrderedDict()
 while True:
     x = input().split(', ')
     if 'q' in x:
