@@ -2,8 +2,8 @@ import numpy as np
 
 
 def peak_indexes(x):
-    x1 = np.diff(x)
-
+    peak = (x[1:-1] > x[:-2]) & (x[1:-1] > x[2:])
+    return np.arange(1, x.size - 1)[peak]
 
 
 def main():
@@ -15,4 +15,4 @@ def main():
         print("No peaks")
 
 
-exec(input().strip())
+exec(input().strip())  # Don't remove this line
